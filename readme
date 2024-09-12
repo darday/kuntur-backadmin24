@@ -1,0 +1,4 @@
+Para levantar el sistema se debe crear manualmente osea desde la base de datos 1 usuario con perfil admin 
+y también se debe crear una noticia. Caso contrario lanzará errores. 
+
+tambien se debe borrar el contendido de la carpeta bootstrap/cache.
