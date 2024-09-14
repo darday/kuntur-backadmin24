@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/programacion/{id}/director' ,'FilmController@byfilm');
+
+
+Route::get('/news-list' ,'NoticiaController@api_listar_noticias');
+Route::post('/send-email', [MailController::class, 'sendEmail']);
+
+
+
+

@@ -1,31 +1,35 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
+        Options -MultiViews -Indexes +FollowSymLinks
     </IfModule>
 
-    
     RewriteEngine On
 
+    # Redirigir si no es un directorio
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+    # Redirigir todo a index.php si no es archivo o directorio real
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    RewriteRule ^(.*)$ index.php [QSA,L]
 
+    # Permitir acceso a archivos en /storage/
+    RewriteCond %{REQUEST_URI} ^/storage/ [NC]
+    RewriteRule ^ storage/%{REQUEST_URI} [L]
+
+    # Manejar los activos como CSS, JS, imágenes
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(css|js|images)/(.*)$ public/$1/$2 [L,NC]
-
+    RewriteRule ^(css|js|images|storage)/(.*)$ public/$1/$2 [L,NC]
 </IfModule>
+
+# Redirección adicional para subdominio kunturnawi
 RewriteCond %{HTTP_HOST} ^kunturnawi\.fundacionartenativo\.org\.ec$
 RewriteRule ^/?$ "http\:\/\/fundacionartenativo\.org\/react\/docs\/" [R=301,L]
 
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php74” package as the default “PHP” programming language.
+# PHP handler para cPanel (PHP 7.4)
 <IfModule mime_module>
   AddHandler application/x-httpd-ea-php74___lsphp .php .php7 .phtml
 </IfModule>
-# php -- END cPanel-generated handler, do not edit

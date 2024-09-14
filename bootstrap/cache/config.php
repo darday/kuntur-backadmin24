@@ -469,10 +469,10 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mail.kunturnawi.com',
-        'port' => '26',
-        'encryption' => 'tls',
-        'username' => 'administrador@kunturnawi.com',
+        'host' => 'mail.festivalkunturnawi.com',
+        'port' => '465',
+        'encryption' => 'ssl',
+        'username' => 'administrador@festivalkunturnawi.com',
         'password' => 'artenativo2019',
         'timeout' => NULL,
         'auth_mode' => NULL,
@@ -506,8 +506,8 @@
     ),
     'from' => 
     array (
-      'address' => 'festivalcinekunturnawi@gmail.com',
-      'name' => 'Kunturnawi',
+      'address' => 'administrador@festivalkunturnawi.com',
+      'name' => 'FESTIVAL KUNTURÑAWI',
     ),
     'markdown' => 
     array (

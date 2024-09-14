@@ -142,4 +142,15 @@ class NoticiaController extends Controller
     public function noticiaKuntur(){
         return view('noticiaKunturGanador');
     }
+
+
+    //////////////////////////////////////API///////////////////////////////////////
+
+    public function api_listar_noticias(){
+        $datos['noticias']=Noticia::orderBy('id','DESC')->get();
+        // $count['count']=$noticia::count();
+        return($datos['noticias']);
+    }
+
+
 }

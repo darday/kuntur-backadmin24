@@ -1,6 +1,6 @@
 
 @if(Auth::user()->rol == 'admin')
-  <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+  <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3" style="padding-top: 10%;">
     <div class="list-group">
         <a href="{{ url('/admin') }}" class="list-group-item list-group-item-action active">
             Home
