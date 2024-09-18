@@ -79,11 +79,28 @@ class NoticiaController extends Controller
             // Guardar la ruta en el array $usuario
             $usuario['Not_imagen'] = $imagePath;
         }
+        if ($request->file('Not_imagen2')) {
+            // Procesar la imagen usando Intervention Image
+            $image = $request->file('Not_imagen2');
+            $imagePath = 'uploads/' . time() . '.' . $image->getClientOriginalExtension();
+
+            // Redimensionar la imagen sin mantener la proporción, exactamente a 800x600
+            $img = Image::make($image->getRealPath());
+
+            // Ajustar la imagen a las dimensiones exactas (800x600), incluso si hay distorsión
+            // $img->fit(800, 900);  // Esto recorta si es necesario y ajusta a la dimensión exacta
+
+            // Guardar la imagen comprimida
+            $img->save(public_path('storage/' . $imagePath), 75); // 75 es la calidad (en %)
+
+            // Guardar la ruta en el array $usuario
+            $usuario['Not_imagen2'] = $imagePath;
+        }
 
         $usuario['created_at'] = Carbon::now(); // Cambié 'Created_at' a 'created_at' por convención
         Noticia::insert($usuario);
 
-        return redirect('/cnoticia')->with('Mensaje', 'Film Agregado con Éxito');
+        return redirect('/cnoticia')->with('Mensaje', 'Noticia Agregada con Éxito');
     }
 
 
@@ -130,10 +147,14 @@ class NoticiaController extends Controller
             Storage::delete('public/' . $noti->Not_imagen);
             $noti2['Not_imagen'] = $request->file('Not_imagen')->store('uploads', 'public');
         }
+        if ($request->file('Not_imagen2')) {
+            Storage::delete('public/' . $noti->Not_imagen);
+            $noti2['Not_imagen2'] = $request->file('Not_imagen2')->store('uploads', 'public');
+        }
 
         $noti->update($noti2);
 
-        return redirect('/editnotice/' . $id . '/edit')->with('Mensaje', 'Película Modificadas con Éxito');
+        return redirect('/editnotice/' . $id . '/edit')->with('Mensaje', 'Noticia Modificadas con Éxito');
     }
 
 
@@ -169,4 +190,12 @@ class NoticiaController extends Controller
         // $count['count']=$noticia::count();
         return ($datos['noticias']);
     }
+    
+    public function api_news_by_id(Noticia $noticia, $id)
+    {
+        $noti = Noticia::findOrFail($id);
+        $noti['noticia'] = Noticia::findOrFail($id);
+        return($noti);
+    }
+
 }

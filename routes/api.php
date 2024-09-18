@@ -23,6 +23,9 @@ Route::get('/programacion/{id}/director' ,'FilmController@byfilm');
 
 
 Route::get('/news-list' ,'NoticiaController@api_listar_noticias');
+Route::get('/news-by-id/{id}' ,'NoticiaController@api_news_by_id');
+
+
 Route::post('/send-email', [MailController::class, 'sendEmail']);
 
 

@@ -27,22 +27,24 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="titulo" class="col-md-12 col-form-label ">Fecha: </label>
-
-                            <div class="col-md-12">
+                            
+                            <div class="col-md-6">
+                                <label for="titulo" class="col-md-12 col-form-label ">Fecha: </label>
                                 <input id="name" type="date" class="form-control @error('name') is-invalid @enderror" name="Not_Fecha" value="" required autocomplete="name" autofocus>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="titulo" class="col-md-12 col-form-label ">Estado: </label>
-
-                            <div class="col-md-12">
+                            
+                            <div class="col-md-6">
+                                <label for="titulo" class="col-md-12 col-form-label ">Estado: </label>
                                 <select class="form-control" name="Not_Estado">
                                     <option selected value="Deshabilitado">Deshabilitado</option>
                                     <option value="Habilitado">Habilitado</option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            
                         </div>
 
                         <div class="form-group row">
@@ -58,8 +60,13 @@
 
 
                         <div class="custom-file">
-                            <label for="exampleFormControlFile1">Imagen:</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Not_imagen">
+                            <label for="exampleFormControlFile1">Imagen 1:</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Not_imagen" require>
+                        </div>
+                        
+                        <div class="custom-file">
+                            <label for="exampleFormControlFile1">Imagen 2:</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Not_imagen2" require>
                         </div>
 
                         <div class="form-group row">

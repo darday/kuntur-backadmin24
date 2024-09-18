@@ -16,11 +16,12 @@ class CreateNoticiasTable extends Migration
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
             $table->string('Not_Titulo');
-            $table->string('Not_Fecha');
-            $table->text('Not_Estado');
+            $table->string('Not_Fecha')->nullable();
+            $table->text('Not_Estado')->nullable();
             $table->text('Not_Descripcion');
             $table->string('Not_imagen');
-            $table->text('Not_ImgDesc');
+            $table->string('Not_imagen2');
+            $table->text('Not_ImgDesc')->nullable();
 
 
             $table->timestamps();
