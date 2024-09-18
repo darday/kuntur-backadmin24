@@ -682,6 +682,10 @@
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
   ),
+  'image' => 
+  array (
+    'driver' => 'gd',
+  ),
   'trustedproxy' => 
   array (
     'proxies' => NULL,
