@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" >
     <div class="row" >
         @include('components/sideBar')
-            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-9">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-9" >
                 <h1>Listado de Películas</h1>
                 <hr>
 
@@ -14,7 +14,7 @@
                     }}@endif
                 </div>
 
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <table id="example" class="table table-striped table-bordered" style="width:100%; background-color:white" >
                     <thead>
                         <tr>
                             <th>#</th>
@@ -32,7 +32,8 @@
 
                             <td>{{$loop->iteration}}</td>
                             <td>
-                                <img src="{{ asset('storage/app/public').'/'. $film->film_imagen}}" alt="foto" width="70px" height="110px">  <!--se debe agregar php artisan storage:link-->
+                                <img src="{{ asset('storage/'. $film->film_imagen)}}" alt="foto" width="70px" height="110px">  <!--se debe agregar php artisan storage:link-->
+
                             </td>
                             <td>{{$film->film_Titulo}}</td>
                             <td>{{$film->film_Director}}</td>
