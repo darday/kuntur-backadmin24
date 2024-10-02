@@ -27,22 +27,25 @@ class FilmController extends Controller
 
     public function indexp(){
         $datos=Film::paginate(50);
-        $idLastNew=Noticia::latest()->first()->id ;
-        $last=Noticia::latest()->take(1)->get() ;
-        $not=Noticia::where("id","!=",$idLastNew)->latest()->take(2)->get();
+        // $idLastNew=Noticia::latest()->first()->id ;
+        $lastNoticia = Noticia::latest()->first();
+
+        if ($lastNoticia) {
+            $idLastNew = $lastNoticia->id;
+            $last = Noticia::latest()->take(1)->get();
+            $not = Noticia::where("id", "!=", $idLastNew)->latest()->take(2)->get();
+        } else {
+            // Si no hay noticias, definimos colecciones vacías para evitar errores
+            $last = collect();
+            $not = collect();
+        }
+        // $last=Noticia::latest()->take(1)->get() ;
+        // $not=Noticia::where("id","!=",$idLastNew)->latest()->take(2)->get();
         // $last=Noticia::latest()->first()->id;
         // $datos['film']=Film::where("film_Categoria","=",'Wawas al Cine')->get();
-
-
-
-
-        // return view('index',$datos,$last);
         return view('index',['film'=>$datos,
                             'noticias2'=>$not,
                             'last'=>$last]);
-
-        // return ($last);
-
 
     }
 
@@ -115,15 +118,15 @@ class FilmController extends Controller
         $count['count']=Film::where("film_Categoria","=",'Wawas al Cine')->count();
         return view('wawas',$datos,$count);
     }
-    
+
         public function wawascortos(Film $film)
     {
         $datos['film']=Film::where("film_Categoria","=",'Cortos')->get();
         $count['count']=Film::where("film_Categoria","=",'Cortos')->count();
         return view('wawascortos',$datos,$count);
     }
-    
-    
+
+
     public function canelos(Film $film)
     {
         $datos['film']=Film::where("film_Categoria","=",'Proyecto Canelos')->get();
@@ -330,5 +333,68 @@ class FilmController extends Controller
 
         return redirect('/listar')->with('Mensaje','Película eliminada con Exito');
     }
+
+
+    #################################################################################
+    #################################################################################
+    #################################################################################
+    #################################################################################
+
+    public function api_larfic(Film $film)
+    {
+        $datos['larFic']=Film::where("film_Categoria","=",'Largometraje Ficción')->get();
+        $count['count']=Film::where("film_Categoria","=",'Largometraje Ficción')->count();
+        return $datos['larFic'];
+    }
+
+    public function api_lardoc(Film $film)
+    {
+        $datos['larDoc']=Film::where("film_Categoria","=",'Largometraje Documental')->get();
+        $count['count']=Film::where("film_Categoria","=",'Largometraje Documental')->count();
+        return $datos['larDoc'];
+    }
+
+    public function api_corfic(Film $film)
+    {
+        $datos['corFic']=Film::where("film_Categoria","=",'Cortometraje Ficción')->get();
+        $count['count']=Film::where("film_Categoria","=",'Cortometraje Ficción')->count();
+        return $datos['corFic'];
+    }
+
+    public function api_cordoc(Film $film)
+    {
+        $datos['corDoc']=Film::where("film_Categoria","=",'Cortometraje Documental')->get();
+        $count['count']=Film::where("film_Categoria","=",'Cortometraje Documental')->count();
+        return $datos['corDoc'];
+    }
+    
+    public function api_corunific(Film $film)
+    {
+        $datos['corUniFic']=Film::where("film_Categoria","=",'Cortometraje Universitario Ficción')->get();
+        $count['count']=Film::where("film_Categoria","=",'Cortometraje Universitario Ficción')->count();
+        return $datos['corUniFic'];
+    }
+    
+    public function api_corunidoc(Film $film)
+    {
+        $datos['corUniDoc']=Film::where("film_Categoria","=",'Cortometraje Universitario Documental')->get();
+        $count['count']=Film::where("film_Categoria","=",'Cortometraje Universitario Documental')->count();
+        return $datos['corUniDoc'];
+    }
+    
+    public function api_corinternacional(Film $film)
+    {
+        $datos['corInter']=Film::where("film_Categoria","=",'Cortometraje Internacional')->get();
+        $count['count']=Film::where("film_Categoria","=",'Cortometraje Internacional')->count();
+        return $datos['corInter'];
+    }
+
+    public function api_filmbyId( $id){
+        $dir=Film::where( 'id',$id)->get();
+        return $dir;
+
+    }
+    
+
 
 }

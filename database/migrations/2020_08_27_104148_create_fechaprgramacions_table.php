@@ -16,8 +16,8 @@ class CreateFechaprgramacionsTable extends Migration
         Schema::create('fechaprgramacions', function (Blueprint $table) {
             $table->id();
             $table->date('fecha')->unique();
-            $table->string('imgfecha');
-            $table->string('descripcion');
+            $table->string('imgfecha')->nullable();
+            $table->string('descripcion')->nullable();
 
             $table->timestamps();
         });
