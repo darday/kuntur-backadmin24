@@ -36,11 +36,11 @@
 
                         
                         <div class="col-md-6">
-                            <label for="titulo" class="col-md-12 col-form-label ">Estado: </label>
+                            <label for="titulo" class="col-md-12 col-form-label ">Tiene Video: </label>
                             <select class="form-control" name="Not_Estado">
                                 <option selected value="{{$noti->Not_Estado}}">{{$noti->Not_Estado}}</option>
-                                <option value="Deshabilitado">Deshabilitado</option>
-                                <option value="Habilitado">Habilitado</option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -59,18 +59,24 @@
                         </div>
                     </div>
 
-
-
-
-
                     <div class="custom-file">
                         <label for="exampleFormControlFile1">Imagen:</label>
                         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Not_imagen">
                     </div>
                     <div class="custom-file">
-                        <label for="exampleFormControlFile1">Imagen:</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="Not_imagen2">
+                        <label for="exampleFormControlFile1">Imagen 2:</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile2" name="Not_imagen2">
                     </div>
+
+                    <div class="form-group row">
+                        <label for="titulo" class="col-md-12 col-form-label ">LINK DEL VIDEO: </label>
+                        <div class="col-md-12">
+                            <input name="Not_ImgDesc" id="textarea" rows="1" class="form-control" value="{{$noti->Not_ImgDesc}}">
+
+                        </div>
+                    </div>
+
+
                     <div class="form-group row mb-0">
                         <div class="col-md-12 ">
                             <br>

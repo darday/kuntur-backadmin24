@@ -148,7 +148,7 @@ class NoticiaController extends Controller
             $noti2['Not_imagen'] = $request->file('Not_imagen')->store('uploads', 'public');
         }
         if ($request->file('Not_imagen2')) {
-            Storage::delete('public/' . $noti->Not_imagen);
+            Storage::delete('public/' . $noti->Not_imagen2);
             $noti2['Not_imagen2'] = $request->file('Not_imagen2')->store('uploads', 'public');
         }
 
