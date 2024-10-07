@@ -216,13 +216,17 @@ class pruebas extends Seeder
 
         // Recorre cada día del mes de noviembre
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            // Obtener el día de la semana en formato abreviado
+            // Obtener el día de la semana en formato abreviado y concatenar con el día del mes
             $dayOfWeek = $this->getDayAbbreviation($date->format('l')); // Formato "l" devuelve el día de la semana completo
+            $dayOfMonth = $date->format('j'); // Obtener el día del mes sin ceros a la izquierda
+
+            // Generar la descripción como "VIE 1", "SÁB 2", etc.
+            $descripcion = $dayOfWeek . ' ' . $dayOfMonth;
 
             // Insertar los datos en la tabla
             DB::table('fechaprgramacions')->insert([
                 'fecha' => $date->format('Y-m-d'),
-                'descripcion' => $dayOfWeek,
+                'descripcion' => $descripcion,
                 'imgfecha' => null, // Opcional, la imagen no es requerida
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -232,16 +236,18 @@ class pruebas extends Seeder
 
     private function getDayAbbreviation($day)
     {
-        $days = [
-            'Monday' => 'LUN',
-            'Tuesday' => 'MAR',
-            'Wednesday' => 'MIÉ',
-            'Thursday' => 'JUE',
-            'Friday' => 'VIE',
-            'Saturday' => 'SÁB',
-            'Sunday' => 'DOM',
-        ];
-
-        return $days[$day] ?? '';
+        {
+            $days = [
+                'Monday' => 'LUN',
+                'Tuesday' => 'MAR',
+                'Wednesday' => 'MIÉ',
+                'Thursday' => 'JUE',
+                'Friday' => 'VIE',
+                'Saturday' => 'SÁB',
+                'Sunday' => 'DOM',
+            ];
+    
+            return $days[$day] ?? '';
+        }
     }
 }

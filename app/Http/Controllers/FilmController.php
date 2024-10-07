@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\calificacion_film_user;
 use App\comentario;
 use App\Film;
+use App\Fechaprgramacion;
 use App\Noticia;
 use App\User;
 use Illuminate\Http\Request;
@@ -394,6 +395,8 @@ class FilmController extends Controller
         return $dir;
 
     }
+
+    
     
 
 

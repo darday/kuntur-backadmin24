@@ -15,7 +15,7 @@
                     }}@endif
                 </div>
                  <div class="card-body">
-                    <form method="POST" action="{{url('/eprogramacion/'.$prog->id)}}"   enctype="multipart/form-data">
+                    <form method="POST" action="{{url('/uactivity/'.$prog->id)}}"   enctype="multipart/form-data">
                         {{csrf_field()}}<!--Seguridad-->
                         {{method_field('PATCH')}}
 

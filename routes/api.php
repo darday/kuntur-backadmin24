@@ -35,6 +35,8 @@ Route::get('/list_cortointer' ,'FilmController@api_corinternacional');
 
 Route::get('/list_film_by_id/{id}' ,'FilmController@api_filmbyId');
 
+Route::get('/listdate' ,'FechaprgramacionController@api_listdate');
+Route::get('/list_activity/{id}' ,'ActivityController@api_listactivity');
 
 Route::post('/send-email', [MailController::class, 'sendEmail']);
 

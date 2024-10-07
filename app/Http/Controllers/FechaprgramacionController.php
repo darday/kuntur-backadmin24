@@ -58,7 +58,7 @@ class FechaprgramacionController extends Controller
     public function show(Fechaprgramacion $fechaprgramacion)
     {
 
-        $datos['fecha']=Fechaprgramacion::paginate(50);
+        $datos['fecha']=Fechaprgramacion::orderBy('fecha', 'asc')->paginate(50);
         return view('admin.listfechapro',$datos);
         return("show");
     }
@@ -117,5 +117,11 @@ class FechaprgramacionController extends Controller
         }
         Fechaprgramacion::destroy($id);
         return redirect('/lfechapro')->with('Mensaje','Fecha eliminada con éxito');
+    }
+
+    public function api_listdate( ){
+        $dir = Fechaprgramacion::orderBy('fecha', 'asc')->get(); // También obtiene todos los registros
+        return $dir;
+
     }
 }

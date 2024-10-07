@@ -11,17 +11,21 @@
         <a href="{{ url('/listnotice') }}" class="list-group-item list-group-item-action">Listar Noticias</a>
         <a href="{{ url('/cgallery') }}" class="list-group-item list-group-item-action">Agregar Fotos</a>
         <a href="{{ url('/lgallery') }}" class="list-group-item list-group-item-action">Listar Fotos</a>
-        <a href="{{ url('/ctaller') }}" class="list-group-item list-group-item-action">Agregar Talleres</a>
-        <a href="{{ url('/ltaller') }}" class="list-group-item list-group-item-action">Listar Talleres</a>
+        <a href="{{ url('/cactivity') }}" class="list-group-item list-group-item-action">Agregar Actividad</a>
+        <a href="{{ url('/lactivity') }}" class="list-group-item list-group-item-action">Listar Actividad</a>
+        <a href="{{ url('/cactivity_peli') }}" class="list-group-item list-group-item-action">Agregar Pelí a Actividad</a>
+        <a href="{{ url('/lactivity_peli') }}" class="list-group-item list-group-item-action">Listar Peli - Actividad</a>
+        <!-- <a href="{{ url('/ctaller') }}" class="list-group-item list-group-item-action">Agregar Talleres</a> -->
+        <!-- <a href="{{ url('/ltaller') }}" class="list-group-item list-group-item-action">Listar Talleres</a> -->
         <a href="{{ url('/cfechapro') }}" class="list-group-item list-group-item-action">Agregar Fecha de Programación</a>
         <a href="{{ url('/lfechapro') }}" class="list-group-item list-group-item-action">Listar Fechas de Programación</a>
         <a href="{{ url('/cprogramacion') }}" class="list-group-item list-group-item-action">Agregar Film a Programación</a>
         <a href="{{ url('/lprogramacion') }}" class="list-group-item list-group-item-action">Listar Programación</a>
         <!--<a href="{{ url('/cjurado') }}" class="list-group-item list-group-item-action">Agregar Jurado</a>-->
         <!--<a href="{{ url('/ljurado') }}" class="list-group-item list-group-item-action">Listar Jurado</a>-->
-        <a href="{{ url('/lvotos') }}" class="list-group-item list-group-item-action">Ver Votos</a>
+        <!-- <a href="{{ url('/lvotos') }}" class="list-group-item list-group-item-action">Ver Votos</a>
         <a href="{{url('lusuarios')}}" class="list-group-item list-group-item-action">Listar Usuarios</a>
-        <a href="{{url('lcomentarios')}}" class="list-group-item list-group-item-action">Comentarios</a>
+        <a href="{{url('lcomentarios')}}" class="list-group-item list-group-item-action">Comentarios</a> -->
     </div>
   </div>
 @else
