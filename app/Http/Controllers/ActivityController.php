@@ -59,8 +59,14 @@ class ActivityController extends Controller
     {
 
 
-        $datos['activity'] = Activity::get();
+        // $datos['activity'] = Activity::get();
+        $datos['activity'] = DB::table('activities')
+            ->join('fechaprgramacions', 'activities.id_fechaprogramacions', '=', 'fechaprgramacions.id')
+            ->select('activities.*', 'fechaprgramacions.*', 'activities.descripcion as descripcion', 'fechaprgramacions.descripcion as fecha')
 
+            ->get();
+        // return ['datos' => $datos];
+      
         return view('admin.listActivity', $datos);
     }
 
@@ -106,9 +112,11 @@ class ActivityController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy($id_activity)
     {
-        //
+        $actividad = Activity::findOrFail($id_activity);
+        Activity::destroy($id_activity);
+        return redirect('/lactivity')->with('Mensaje', 'Actividad borrada con Exito');
     }
 
 

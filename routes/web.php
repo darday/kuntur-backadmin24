@@ -149,12 +149,12 @@ Route::delete('/dactivity/{admin}', 'ActivityController@destroy')->name('dactivi
 
 //Pelicula actividad
 
-Route::get('/cpeli_activity', 'FechaprgramacionController@create')->name('cpeli_activity');
-Route::post('/cre_peli_activity', 'FechaprgramacionController@store')->name('cre_peli_activity');
-Route::get('/lpeli_activity', 'FechaprgramacionController@show')->name('lpeli_activity');
-Route::get('/epeli_activity/{admin}/edit', 'FechaprgramacionController@edit')->name('epeli_activity');
-Route::patch('/upeli_activity/{admin}', 'FechaprgramacionController@update')->name('upeli_activity');
-Route::delete('/dpeli_activity/{admin}', 'FechaprgramacionController@destroy')->name('dpeli_activity');
+Route::get('/cpeli_activity', 'ActivityFimController@create')->name('cpeli_activity');
+Route::post('/cre_peli_activity', 'ActivityFimController@store')->name('cre_peli_activity');
+Route::get('/lpeli_activity', 'ActivityFimController@show')->name('lpeli_activity');
+Route::get('/epeli_activity/{admin}/edit', 'ActivityFimController@edit')->name('epeli_activity');
+Route::patch('/upeli_activity/{admin}', 'ActivityFimController@update')->name('upeli_activity');
+Route::delete('/dpeli_activity/{admin}', 'ActivityFimController@destroy')->name('dpeli_activity');
 
 
 Route::get('/lvotos', 'CalificacionFilmUserController@show')->name('lvotos');

@@ -31,7 +31,7 @@
                     <tr>
 
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$film->id_fechaprogramacions}}</td>
+                        <td>{{$film->fecha}}</td>
                         <td>{{$film->hora}}</td>
                         <td>{{$film->descripcion}}</td>
                         <td>{{$film->provincia}}</td>
@@ -41,7 +41,7 @@
                             <a href="{{url('/eactivity/'.$film->id_activities.'/edit')}}">
                                 <button type="button" class="btn btn-warning"> Editar</button>
                             </a>
-                            <form method="post" action="{{url('/delete/'.$film->id)}}">
+                            <form method="post" action="{{url('/dactivity/'.$film->id_activities)}}">
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}
                                 <button type="Submit" class="btn btn-danger" onclick="return confirm('¿Desea Borrar?');  "> Borrar</button>
