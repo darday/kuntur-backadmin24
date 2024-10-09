@@ -31,6 +31,6 @@ class SendMail extends Mailable
     public function build()
     {
         return $this->view('emails.default') // Aseguramos que la vista sea 'emails.default'
-                    ->subject('Saludo personalizado'); // Añadimos el asunto del correo
+                    ->subject('Bienvenido al Kunturñawi'); // Añadimos el asunto del correo
     }
 }
