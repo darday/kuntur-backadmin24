@@ -66,7 +66,7 @@ class ActivityController extends Controller
 
             ->get();
         // return ['datos' => $datos];
-      
+
         return view('admin.listActivity', $datos);
     }
 
@@ -122,9 +122,13 @@ class ActivityController extends Controller
 
     public function api_listactivity($id)
     {
-        $dir = Activity::where('id_fechaprogramacions', $id) // Filtra por la fecha 1 de noviembre de 2024
+        $dir = Activity::where('id_fechaprogramacions', $id) // Filtra por la fecha 
             ->orderBy('hora', 'asc')       // Ordena por la columna 'hora'
+            ->with(['films' => function($query) {
+                $query->orderBy('film_Titulo', 'asc'); // Ordena las películas por título
+            }])
             ->get();
+
         return $dir;
     }
 }

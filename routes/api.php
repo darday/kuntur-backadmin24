@@ -38,6 +38,8 @@ Route::get('/list_film_by_id/{id}' ,'FilmController@api_filmbyId');
 Route::get('/listdate' ,'FechaprgramacionController@api_listdate');
 Route::get('/list_activity/{id}' ,'ActivityController@api_listactivity');
 
+Route::get('/list_film_for_activity/{id}' ,'ActivityFimController@api_listFilmForActivity');
+
 Route::post('/send-email', [MailController::class, 'sendEmail']);
 
 

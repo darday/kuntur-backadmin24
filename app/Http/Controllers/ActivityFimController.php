@@ -157,4 +157,24 @@ class ActivityFimController extends Controller
         Activity_fim::destroy($id_peli_actividad);
         return redirect('/lpeli_activity')->with('Mensaje','Peli borrada de actividad con Exito');
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public function api_listFilmForActivity($id_actividad)
+    {
+
+        $dato2 = DB::table('activity_fims')
+            ->join('films', 'films.id', '=', 'activity_fims.id_film')  // Adjust the field names as necessary
+            // ->select('fechaprgramacions.descripcion as fecha', 'activities.*')  // Select the desired fields
+            ->where('activity_fims.id_activity', $id_actividad)
+            ->orderBy('films.film_Titulo', 'asc')
+            ->get();
+        
+        return $dato2;
+    }
+
+
+
 }
