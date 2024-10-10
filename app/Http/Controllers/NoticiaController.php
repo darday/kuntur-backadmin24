@@ -139,23 +139,39 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //return $request;
-        $noti2 = request()->except(['_token', '_method']);
-
+        // Encontrar la noticia por su ID
         $noti = Noticia::findOrFail($id);
-        if ($request->file('Not_imagen')) {
-            Storage::delete('public/' . $noti->Not_imagen);
-            $noti2['Not_imagen'] = $request->file('Not_imagen')->store('uploads', 'public');
-        }
-        if ($request->file('Not_imagen2')) {
-            Storage::delete('public/' . $noti->Not_imagen2);
-            $noti2['Not_imagen2'] = $request->file('Not_imagen2')->store('uploads', 'public');
+
+        // Tomar los datos del request, excepto el token y el método
+        $notiData = $request->except(['_token', '_method']);
+
+        // Comprobar si hay una nueva imagen para 'Not_imagen'
+        if ($request->hasFile('Not_imagen')) {
+            // Eliminar la imagen antigua si existe
+            if ($noti->Not_imagen && Storage::exists('public/' . $noti->Not_imagen)) {
+                Storage::delete('public/' . $noti->Not_imagen);
+            }
+            // Guardar la nueva imagen
+            $notiData['Not_imagen'] = $request->file('Not_imagen')->store('uploads', 'public');
         }
 
-        $noti->update($noti2);
+        // Comprobar si hay una nueva imagen para 'Not_imagen2'
+        if ($request->hasFile('Not_imagen2')) {
+            // Eliminar la imagen antigua si existe
+            if ($noti->Not_imagen2 && Storage::exists('public/' . $noti->Not_imagen2)) {
+                Storage::delete('public/' . $noti->Not_imagen2);
+            }
+            // Guardar la nueva imagen
+            $notiData['Not_imagen2'] = $request->file('Not_imagen2')->store('uploads', 'public');
+        }
 
-        return redirect('/editnotice/' . $id . '/edit')->with('Mensaje', 'Noticia Modificadas con Éxito');
+        // Actualizar los datos de la noticia
+        $noti->update($notiData);
+
+        // Redirigir a la página de edición con un mensaje de éxito
+        return redirect('/editnotice/' . $id . '/edit')->with('Mensaje', 'Noticia Modificada con Éxito');
     }
+
 
 
     /**
@@ -190,12 +206,11 @@ class NoticiaController extends Controller
         // $count['count']=$noticia::count();
         return ($datos['noticias']);
     }
-    
+
     public function api_news_by_id(Noticia $noticia, $id)
     {
         $noti = Noticia::findOrFail($id);
         $noti['noticia'] = Noticia::findOrFail($id);
-        return($noti);
+        return ($noti);
     }
-
 }
