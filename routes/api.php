@@ -40,6 +40,9 @@ Route::get('/list_activity/{id}' ,'ActivityController@api_listactivity');
 
 Route::get('/list_film_for_activity/{id}' ,'ActivityFimController@api_listFilmForActivity');
 
+Route::get('/list_gallery' ,'GaleriaController@api_show');
+
+
 Route::post('/send-email', [MailController::class, 'sendEmail']);
 
 

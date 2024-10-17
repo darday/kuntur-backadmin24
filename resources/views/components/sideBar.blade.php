@@ -19,8 +19,8 @@
         <a href="{{ url('/lfechapro') }}" class="list-group-item list-group-item-action">Listar Fechas de Programación</a>
         <a href="{{ url('/cpeli_activity') }}" class="list-group-item list-group-item-action">Agregar Pelí a Actividad</a>
         <a href="{{ url('/lpeli_activity') }}" class="list-group-item list-group-item-action">Listar Peli - Actividad</a>
-        <a href="{{ url('/cprogramacion') }}" class="list-group-item list-group-item-action">Agregar Film a Programación</a>
-        <a href="{{ url('/lprogramacion') }}" class="list-group-item list-group-item-action">Listar Programación</a>
+        <!-- <a href="{{ url('/cprogramacion') }}" class="list-group-item list-group-item-action">Agregar Film a Programación</a>
+        <a href="{{ url('/lprogramacion') }}" class="list-group-item list-group-item-action">Listar Programación</a> -->
         <!--<a href="{{ url('/cjurado') }}" class="list-group-item list-group-item-action">Agregar Jurado</a>-->
         <!--<a href="{{ url('/ljurado') }}" class="list-group-item list-group-item-action">Listar Jurado</a>-->
         <!-- <a href="{{ url('/lvotos') }}" class="list-group-item list-group-item-action">Ver Votos</a>

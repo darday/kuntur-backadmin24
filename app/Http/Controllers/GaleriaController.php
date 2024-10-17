@@ -57,6 +57,7 @@ class GaleriaController extends Controller
             galeria::insert($urlimages);
 
         }
+
         return $urlimages;
 
     }
@@ -116,5 +117,19 @@ class GaleriaController extends Controller
 
 
          return redirect('/lgallery')->with('Mensaje','Foto eliminada con Éxito');
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    public function api_show(galeria $galeria)
+    {
+        $datos= galeria::orderBy('id', 'DESC')->get();
+
+        //$count['count']=$film::count();
+
+        return ($datos);
+
     }
 }

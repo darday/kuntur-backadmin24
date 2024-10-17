@@ -19,9 +19,6 @@
                         @csrf
 
 
-
-
-
                         <div class="custom-file">
                             <label for="exampleFormControlFile1">Imagen:</label>
                             <div class="col-sm-4 col-xs-8">
