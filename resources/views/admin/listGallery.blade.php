@@ -5,7 +5,7 @@
     <div class="row" >
         @include('components/sideBar')
             <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-9">
-                <h1>Listado de Noticias</h1>
+                <h1>Listado de Fotos</h1>
                 <hr>
 
                 <div class="alert alert-success" role="alert">
@@ -19,7 +19,8 @@
 
                     @foreach($film as $film)
                     <div class="col-12 col-sm-12 col-md-10 col-lg-3 col-xl-3">
-                            <img src="{{url('img/galeria/'.$film->Foto)}}" alt="" width="200px" height="150px" class="responsive ">
+                            <img src="{{asset('storage').'/'. $film->Foto}}" alt="" width="200px" height="150px" class="responsive ">
+                            <!-- <img src="{{url($film->Foto)}}" alt="" width="200px" height="150px" class="responsive "> -->
                             <form method="post" action="{{url('/gdelete/'.$film->id)}}">
                                 {{csrf_field()}}
                                 {{method_field('DELETE')}}

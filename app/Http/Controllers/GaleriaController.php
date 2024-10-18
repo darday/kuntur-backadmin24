@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\galeria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 
 class GaleriaController extends Controller
 {
@@ -16,10 +18,10 @@ class GaleriaController extends Controller
     public function index()
     {
 
-        $datos['film']=galeria::get();
+        $datos['film'] = galeria::get();
         //$count['count']=$film::count();
 
-        return view('galeria',$datos);
+        return view('galeria', $datos);
     }
 
     /**
@@ -40,27 +42,40 @@ class GaleriaController extends Controller
      */
     public function store(Request $request)
     {
-        //galeria::save();
+        $urlimages = []; // Inicializar el array para almacenar las rutas de las imágenes
 
-        $urlimages=[];
-        if($request->hasFile('Foto')){
-            $imagenes=$request->file('Foto');
-            //dd($images);
-            foreach($imagenes as $imagen){
-                $nombre = $imagen->getClientOriginalName();
-                $ruta='img/galeria';
-                $imagen->move($ruta,$nombre);
-                $urlimages[]['Foto']=$nombre;
+        // Verificar si se han subido archivos
+        if ($request->hasFile('Foto')) {
+            $imagenes = $request->file('Foto'); // Obtener todas las imágenes enviadas
 
+            foreach ($imagenes as $imagen) {
+                if ($imagen) {
+                    // Procesar la imagen usando Intervention Image
+                    $imagePath = 'uploads/' . time() . '_' . $imagen->getClientOriginalName(); // Nombre único de la imagen con el tiempo
 
+                    // Redimensionar la imagen a 800x600
+                    $img = Image::make($imagen->getRealPath());
+
+                    // Guardar la imagen redimensionada en la carpeta 'storage/uploads' con calidad 75%
+                    $img->save(public_path('storage/' . $imagePath), 75); // Guardar con 75% de calidad
+
+                    // Guardar la ruta en el array $urlimages
+                    $urlimages[] = [
+                        'Foto' => $imagePath
+                    ];
+                }
             }
-            galeria::insert($urlimages);
 
+            // Insertar todas las imágenes en la base de datos
+            galeria::insert($urlimages);
         }
 
-        return $urlimages;
+        // Obtener los datos paginados para la galería
+        $datos['film'] = galeria::paginate(20);
 
+        return view('admin.listGallery', $datos);
     }
+
 
     /**
      * Display the specified resource.
@@ -70,11 +85,10 @@ class GaleriaController extends Controller
      */
     public function show(galeria $galeria)
     {
-        $datos['film']=galeria::paginate(20);
+        $datos['film'] = galeria::paginate(20);
         //$count['count']=$film::count();
 
-        return view('admin.listGallery',$datos);
-
+        return view('admin.listGallery', $datos);
     }
 
     /**
@@ -108,15 +122,15 @@ class GaleriaController extends Controller
      */
     public function destroy($id)
     {
-         // return ('destroy;');
-         $film=galeria::findOrFail($id);
-         if(Storage::delete('img/galeria/'. $film->Foto)){
-             galeria::destroy($id);
-         }
-         galeria::destroy($id);
+        // return ('destroy;');
+        $film = galeria::findOrFail($id);
+        if (Storage::delete('img/galeria/' . $film->Foto)) {
+            galeria::destroy($id);
+        }
+        galeria::destroy($id);
 
 
-         return redirect('/lgallery')->with('Mensaje','Foto eliminada con Éxito');
+        return redirect('/lgallery')->with('Mensaje', 'Foto eliminada con Éxito');
     }
 
 
@@ -125,11 +139,10 @@ class GaleriaController extends Controller
 
     public function api_show(galeria $galeria)
     {
-        $datos= galeria::orderBy('id', 'DESC')->get();
+        $datos = galeria::orderBy('id', 'DESC')->get();
 
         //$count['count']=$film::count();
 
         return ($datos);
-
     }
 }
