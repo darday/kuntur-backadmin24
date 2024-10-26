@@ -396,6 +396,24 @@ class FilmController extends Controller
 
     }
 
+    public function api_showPlacesForFilm($id)
+    {
+
+        $dato2 = DB::table('activity_fims')
+            ->join('films', 'films.id', '=', 'activity_fims.id_film')  // Adjust the field names as necessary
+            ->join('activities', 'activities.id_activities', '=', 'activity_fims.id_activity')  // Adjust the field names as necessary
+            ->join('fechaprgramacions', 'fechaprgramacions.id', '=', 'activities.id_fechaprogramacions')  // Adjust the field names as necessary
+            ->select('fechaprgramacions.descripcion as fechadesc', 'fechaprgramacions.fecha as fecha','activities.hora as hora',
+                'activities.provincia as provincia','activities.lugar as lugar'
+            )  // Select the desired fields
+            ->where('films.id', $id)
+            ->orderBy('fechaprgramacions.fecha', 'asc')
+            ->orderBy('activities.hora', 'asc')
+            ->get();
+        
+        return $dato2;
+    }
+
     
     
 

@@ -32,6 +32,7 @@ Route::get('/list_cortodoc' ,'FilmController@api_cordoc');
 Route::get('/list_cortounific' ,'FilmController@api_corunific');
 Route::get('/list_cortounidoc' ,'FilmController@api_corunidoc');
 Route::get('/list_cortointer' ,'FilmController@api_corinternacional');
+Route::get('/list_fecha_ciudad_peli/{id}' ,'FilmController@api_showPlacesForFilm');
 
 Route::get('/list_film_by_id/{id}' ,'FilmController@api_filmbyId');
 
